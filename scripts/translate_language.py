@@ -2,18 +2,22 @@ import pandas as pd
 from langdetect import detect
 from transformers import MarianMTModel, MarianTokenizer
 from huggingface_hub import login
-
-from dotenv import load_dotenv
-from huggingface_hub import login
 import os
+from dotenv import load_dotenv
 
-load_dotenv()  # Loads the .env file
-token = os.getenv("HUGGINGFACE_TOKEN")  # Reads the token
-login(token=token)  # Uses the tokengit
+# Load environment variables from .env file
+load_dotenv()
+
+# Get token from environment variable
+HF_TOKEN = os.getenv('HF_API_TOKEN')
+if not HF_TOKEN:
+    raise ValueError("Hugging Face token not found in environment variables")
+
+login(token=HF_TOKEN, add_to_git_credential=False)  # Don't store in git credentials
 
 
-# Load the CSV file with data
 data = pd.read_csv(r'E:\Projects\Lang\data\language_detection_data.csv')
+
 
 # Print available columns to ensure data is loaded correctly
 print("Available columns:", data.columns)
@@ -67,6 +71,6 @@ except Exception as e:
     print(f"Error occurred: {e}")
 
 
-data.to_csv(r'E:\Projects\Lang\data\translated_data.csv', index=False)
+data.to_csv('E:\Projects\Lang\data\translated_data.csv', index=False)
 
 print("Translation complete. Saved to 'translated_data.csv'.")
