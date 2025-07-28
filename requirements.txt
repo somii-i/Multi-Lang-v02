@@ -6,7 +6,7 @@ textblob
 sacremoses   
 langdetect
 langid
-sentencepiece   
+sentencepiece>=0.1.95 
 torch 
 joblib    
 wordcloud  
