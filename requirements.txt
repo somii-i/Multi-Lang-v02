@@ -6,7 +6,8 @@ textblob
 sacremoses   
 langdetect
 langid
-sentencepiece>=0.1.95 
+--find-links https://github.com/google/sentencepiece/releases
+sentencepiece==0.1.99  # Version with pre-built wheels
 torch 
 joblib    
 wordcloud  
