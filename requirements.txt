@@ -13,4 +13,5 @@ joblib
 wordcloud  
 seaborn 
 matplotlib
+streamlit>=1.32.0
                           
